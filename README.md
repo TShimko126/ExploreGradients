@@ -20,6 +20,11 @@ My graduate research specifically focuses on the biophysics of molecular interac
 
 To understand how deep learning can apply to comprehending, and ultimately designing, these interactions, we first have to understand a bit more about how proteins are constructed.
 
+<p align="center">
+  <img src="images/1A3R.gif"><br>
+  <p>An example of an important intermolecular interaction: an antibody in complex with a short protein sequence from the human rhinovirus (PDB ID: 1A3R)</p>
+</p>
+
 ## Proteins: nature's toolbox
 
 Proteins are composed of long chains of amino acids, small chemical compounds also referred to as “residues”, strung together like beads on a string. Only 20 of these amino acids comprise the set from which proteins can be constructed. However, despite such a limited alphabet, nature has been able to devise proteins that perform a dizzying array of functions, from binding and regulating other proteins to synthesizing chemicals critical to sustain life.
@@ -31,6 +36,11 @@ Proteins accomplish these myriad tasks through differences in their three dimens
 Now that we know a bit about protein sequence and its connection to protein function by way of structure, it sure seems like it would be nice if we had a model to connect the sequence of a protein’s amino acids to its fully-folded 3D structure. Unfortunately, this is an incredibly challenging task that remains one of the [largest open problems](https://en.wikipedia.org/wiki/Levinthal%27s_paradox) in computational biology. Despite recent progress by [DeepMind](https://deepmind.com/blog/article/alphafold) and [others](https://www.biorxiv.org/content/10.1101/265231v1), we remain a long way from a generalizable model to perfectly predict a protein’s structure from its sequence alone.
 
 Although the protein folding problem is far from solved, there are many proxy measures of structure that can still provide useful insights into potential function. Contact maps are one of the most widely used methods to abstract away the important components of a folded protein without having to predict the full structure. Contact maps are simply 2D binary matrices where each row and column represent one amino acid in the protein. If a contact of a certain type (for example a covalent bond or a hydrogen bond) exists between two residues, the value at that point in the matrix is one, otherwise it is zero. Since these contacts are undirected, contact maps are symmetric about the main diagonal. Contact maps can be significantly easier to predict that complete 3D structures because of the correlation between contacts in local regions and the projection of the problem from three dimensions into two. These maps still retain information relevant to protein function such as the position of potential binding pockets and local structure. Consequently, I have decided to predict multi-channel contact maps from the protein’s sequence alone, with the hope that these contact maps will serve as a useful intermediate when dissecting the strength and mechanism of protein-protein interactions.
+
+<p align="center">
+  <img src="images/contact_map_example.png"><br>
+  <p>An example of a contact map. On the left is the contact map predicted by a deep learning model. The ground truth map is shown on the right.</p>
+</p>
 
 # My process
 
@@ -70,6 +80,10 @@ Over time, you should expect all of the gradients to trend toward zero as your m
 
 As you approach an optimum value for your model’s parameters, you should see the histogram of gradients shrink toward zero at the same time that you see your loss and/or accuracy begin to plateau. If the gradients are shrinking and the accuracy/loss is not where you would expect, that may be an indication that you’ve reached a local optimum and might be trapped. In this case, increasing the learning rate or relaxing regularization constraints might be helpful.
 
+<p align="center">
+  <img src="images/gradient_trend.png"><br>
+</p>
+
 ### Gradient scale
 
 One final pattern that is often worth examining is the scale of the gradients themselves. Because the gradient is the derivative of the loss function with respect to the parameter, parameters for which a small change would drastically change the loss of an example would be expected to have a large derivative relative to that of an unimportant parameter. Paying attention to the relative scale of different layers of module of your network can tell you a lot about which components might be critical for accurate prediction versus those playing only a minor or supporting role. If you notice a difference of an order of magnitude or more between the gradients flowing to different parts of your model, that may be an indication that a certain module may not be critical, and in some cases may be actively detrimental to network performance.
@@ -77,6 +91,10 @@ One final pattern that is often worth examining is the scale of the gradients th
 I was recently able to use this trick to identify that one of my models was effectively failing to update an embedding layer. Instead, it was simply adapting the network that sat on top of the embeddings to adjust to their random initialization. By focusing more time on creating an informative embedding layer before adding the network on top of it, I’ll likely be able to achieve better results than trying to simultaneously train the network and the embeddings.
 
 In the example below, you’ll have the chance to play around with a network that contains an unnecessary module that injects random noise. You’ll be able to see for yourself the effect of unimportant components on network performance during training.
+
+<p align="center">
+  <img src="images/gradient_scale.png"><br>
+</p>
 
 ## Visualizing gradients
 
