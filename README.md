@@ -56,9 +56,9 @@ Why might you want to visualize the distribution of the gradients within your mo
 
 <!-- $$\theta := \theta - \alpha \nabla J(\theta)$$ -->
 
-<img src="https://latex.codecogs.com/gif.latex?\theta := \theta - \alpha \nabla J(\theta) " />
+![Parameter update function](https://latex.codecogs.com/gif.latex?%5Ctheta%20%3A%3D%20%5Ctheta%20-%20%5Calpha%20%5Cnabla%20J%28%5Ctheta%29)
 
-Where *theta* is your parameter, *alpha* is your learning rate, and *J* is the loss function for the current batch or example. Now it may be a bit more obvious why we are interested in tracking gradients as our model trains: the only two values affecting your parameter updates are your learning rate and your gradient. Since the learning rate is usually fixed (though this isn’t always the case for all optimizers), the gradients generally dictate the direction and magnitude of a given update.
+Where *Θ* is your parameter, *α* is your learning rate, and *J* is the loss function for the current batch or example. Now it may be a bit more obvious why we are interested in tracking gradients as our model trains: the only two values affecting your parameter updates are your learning rate and your gradient. Since the learning rate is usually fixed (though this isn’t always the case for all optimizers), the gradients generally dictate the direction and magnitude of a given update.
 
 ### Gradients vs. parameters
 
