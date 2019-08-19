@@ -40,9 +40,9 @@ One of the most interesting and frustrating parts of my research is having the f
 
 The toughest part of my job is resisting the temptation to be a glutton for novelty. Shiny object syndrome is real and in a world like academia, where deadlines can be much more of a suggestion than a requirement, it can lead to months spent chasing a new method that offers no improvement for your prediction task. As a result, I’ve learned to be very careful when deciding whether to pursue any new method. I try my best to allow the data structures, and the biological processes that generate them, to help guide my decision whether to change direction or hold the course. Before I implement a single new line of code, I like to ask myself:
 
-Does the method fit the process that generates the data? - e.g. Binding curves have underlying biochemical intuition that can reduce the number of parameters that need to be fit.
-Does the data structure match the ideal type for a given architecture? - e.g. 2D CNNs for image data/RNNs for sequences.
-Are there logistical challenges associated with using a specific method on my target dataset? - e.g. Can I fit the entire model into GPU memory when working with protein structure data?
+- Does the method fit the process that generates the data? - e.g. Binding curves have underlying biochemical intuition that can reduce the number of parameters that need to be fit.
+- Does the data structure match the ideal type for a given architecture? - e.g. 2D CNNs for image data/RNNs for sequences.
+- Are there logistical challenges associated with using a specific method on my target dataset? - e.g. Can I fit the entire model into GPU memory when working with protein structure data?
 
 In the case of predicting contact maps for protein-protein interactions, graph convolutional networks (GCNs) meet all three of these requirements. The atoms that make up proteins are connected by sets of bonds and each atom is not bonded to a uniform number of partners. Therefore, a graph better approximates the natural data structure of proteins than a 2D or 3D CNN would. GCNs also offer a significant performance gain over 2D CNNs for the specific problem of contact map prediction. Whereas 2D CNNs would, in effect, be predicting the same value twice in the case of symmetric contact maps, graph convolutions can be designed to predict each contact only once, leading to dramatic improvements in memory efficiency. 
 
