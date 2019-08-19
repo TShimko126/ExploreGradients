@@ -54,9 +54,11 @@ GCNs represent a relatively new and rapidly evolving area of study in deep learn
 
 Why might you want to visualize the distribution of the gradients within your model? The answer might not be immediately obvious, given that you are already tracking your target metrics like loss or accuracy. But what do you turn to if you see no improvement in these standard measures of performance? Here I’d like to remind you of the update rule that your optimizer is using every step it takes:
 
-$$\theta := \theta - \alpha \nabla J(\theta)$$
+<!-- $$\theta := \theta - \alpha \nabla J(\theta)$$ -->
 
-Where $\theta$ is your parameter, $\alpha$ is your learning rate, and $J$ is the loss function for the current batch or example. Now it may be a bit more obvious why we are interested in tracking gradients as our model trains: the only two values affecting your parameter updates are your learning rate and your gradient. Since the learning rate is usually fixed (though this isn’t always the case for all optimizers), the gradients generally dictate the direction and magnitude of a given update.
+<img src="https://latex.codecogs.com/gif.latex?\theta := \theta - \alpha \nabla J(\theta) " />
+
+Where *theta* is your parameter, *alpha* is your learning rate, and *J* is the loss function for the current batch or example. Now it may be a bit more obvious why we are interested in tracking gradients as our model trains: the only two values affecting your parameter updates are your learning rate and your gradient. Since the learning rate is usually fixed (though this isn’t always the case for all optimizers), the gradients generally dictate the direction and magnitude of a given update.
 
 ### Gradients vs. parameters
 
