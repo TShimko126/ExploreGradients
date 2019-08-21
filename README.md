@@ -102,5 +102,5 @@ Weights & Biases offers a great, easy to use tool to directly track and visualiz
 
 # An example
 
-Since most people don’t work on problems related to protein folding, I've implemented the following Google Colab Notebook for you to play around with gradient visualizations yourself using a model trained on the small and manageable MNIST dataset. Go ahead and check out the notebook [here](). Try adjusting the learning rate, batch size, momentum, etc. to get a feel for the effect on the spread and magnitude of the gradients for each model.
+Since most people don’t work on problems related to protein folding, I've implemented the following Google Colab Notebook for you to play around with gradient visualizations yourself using a model trained on the small and manageable MNIST dataset. Go ahead and check out the notebook [here](notebooks/explore_gradients.ipynb). Try adjusting the learning rate, batch size, momentum, etc. to get a feel for the effect on the spread and magnitude of the gradients for each model.
 
