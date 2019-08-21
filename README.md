@@ -82,6 +82,7 @@ As you approach an optimum value for your model’s parameters, you should see t
 
 <p align="center">
   <img src="images/gradient_trend.png"><br>
+  <p>Gradient distributions for two parameter sets of a model showing a (noisy) trend of decreasing magnitude with increased model accuracy/decreased model loss.</p>
 </p>
 
 ### Gradient scale
@@ -94,11 +95,12 @@ In the example below, you’ll have the chance to play around with a network tha
 
 <p align="center">
   <img src="images/gradient_scale.png"><br>
+  <p>Different parameters within the same model showing low magnitude gradients (left) and high magnitude gradients (right).</p>
 </p>
 
 ## Visualizing gradients
 
-Weights & Biases offers a great, easy to use tool to directly track and visualize histograms of your gradients as your model trains. By just including `wand.watch(model, log='all')` before your training loop, you’ll be able to have W&B display histograms of both your model’s parameters and their gradients at each update step. Hopefully, you’ll be able to use some of the tricks I discussed here to shortcut debugging of your next model! 
+Weights & Biases offers a great, easy to use tool to directly track and visualize histograms of your gradients as your model trains. By just including `wandb.watch(model, log='all')` before your training loop, you’ll be able to have W&B display histograms of both your model’s parameters and their gradients at each update step. Hopefully, you’ll be able to use some of the tricks I discussed here to shortcut debugging of your next model! 
 
 # An example
 
